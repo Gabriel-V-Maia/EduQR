@@ -32,4 +32,4 @@ pyinstaller --name EduQR --windowed --onefile main.py
 
 ## Arquitetura
 
-Veja [ARCHITECTURE.md](ARCHITECTURE.md).
+[Architecture](ARCHITECTURE.md)
