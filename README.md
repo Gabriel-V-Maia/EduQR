@@ -26,7 +26,7 @@ Opcionalmente: adicione um logo ao QR Code, edite o texto do bilhete em **Editar
 
 ```bash
 pip install pyinstaller
-pyinstaller eduqr.spec
+pyinstaller --name EduQR --windowed --onefile main.py
 # saída: dist/EduQR.exe
 ```
 
