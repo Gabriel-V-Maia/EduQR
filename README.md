@@ -1,6 +1,20 @@
-# EduQR
+<p align="center">
+  <img src="assets/icon.png" width="120" />
+</p>
 
-Gera bilhetes com QR Code para grupos de WhatsApp de turmas escolares. A saída é um `.docx` paginado, pronto para imprimir e distribuir aos pais.
+<h1 align="center">EduQR</h1>
+
+<p align="center">
+  Gera bilhetes com QR Code para turmas escolares 📚
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.11+-blue">
+  <img src="https://img.shields.io/badge/status-active-success">
+</p>
+
+
+A saída é um `.docx` paginado, pronto para imprimir e distribuir aos pais.
 
 ## Requisitos
 
