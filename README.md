@@ -14,7 +14,7 @@
 </p>
 
 
-A saída é um `.docx` paginado, pronto para imprimir e distribuir aos pais.
+Os bilhetes são salvos como um `.docx` paginado, pronto para imprimir e distribuir aos pais ou alunos.
 
 ## Requisitos
 
