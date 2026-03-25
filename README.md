@@ -22,6 +22,10 @@ Os bilhetes são salvos como um `.docx` paginado, pronto para imprimir e distrib
 
 ## Instalação
 
+Você pode baixar o aplicativo direto na páginas de [Releases](https://github.com/Gabriel-V-Maia/EduQR/releases)
+
+Caso prefira rodar o programa com python:
+
 ```bash
 pip install -r requirements.txt
 python main.py
@@ -46,4 +50,4 @@ pyinstaller --name EduQR --windowed --onefile main.py
 
 ## Arquitetura
 
-[Architecture](ARCHITECTURE.md)
+Veja aqui: [Architecture](ARCHITECTURE.md)
