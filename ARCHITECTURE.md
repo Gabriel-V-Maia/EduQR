@@ -34,17 +34,29 @@ flowchart TD
 ## Estrutura do projeto
 
 ```
-eduqr/
-├── main.py                 # Ponto de entrada — instancia App e inicia o mainloop
+EduQR/
+├── main.py
 ├── requirements.txt
-├── eduqr.spec              # Spec do PyInstaller para build de release
-└── eduqr/
+├── README.md
+├── LICENSE
+├── .gitignore
+├── ARCHITECTURE.md
+│
+├── assets/                      # Ícones e imagens
+│
+├── tests/                       # Testes unitários
+│   ├── __init__.py
+│   ├── test_models.py
+│   ├── test_storage.py
+│   └── test_utils.py
+│
+└── eduqr/                       # Código principal (package)
     ├── __init__.py
-    ├── models.py           # Dados puros: apenas definições @dataclass
-    ├── utils.py            # Parse de texto e geração de QR (sem UI, sem efeitos colaterais)
-    ├── generator.py        # Motor de geração do DOCX
-    ├── storage.py          # Persistência JSON das sessões salvas
-    └── app.py              # Toda a UI (CustomTkinter)
+    ├── models.py                # Dataclasses (ClassEntry, etc)
+    ├── utils.py                 # Parse + QR
+    ├── generator.py             # Geração de DOCX
+    ├── storage.py               # Persistência JSON
+    └── app.py                   # UI (CustomTkinter)
 ```
 
 ---
