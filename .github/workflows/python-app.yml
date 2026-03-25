@@ -1,4 +1,4 @@
-name: EduQR CI
+name: tests
 
 on:
   push:
