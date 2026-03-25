@@ -2,6 +2,33 @@
 
 EduQR gera folhas de bilhetes com QR Code para grupos de WhatsApp, voltado para escolas. Cada bilhete contém um QR Code que abre um link de grupo, um bloco de texto configurável e o nome da turma. A saída é um documento Word paginado pronto para impressão.
 
+```mermaid
+flowchart TD
+    A[Usuário cola turmas e links] --> B[parse_classes · utils.py]
+    B --> C[list de ClassEntry · models.py]
+    C --> D[App renderiza ClassCards · app.py]
+
+    D --> E{Ação do usuário}
+
+    E --> F[Gerar DOCX]
+    F --> G[generate_docx · generator.py]
+    G --> H[generate_qr_bytes · utils.py]
+    H --> G
+    G --> I[.docx salvo em disco]
+
+    E --> J[Ver prévia]
+    J --> K[generate_qr_pil · utils.py]
+    K --> L[PreviewWindow exibe bilhete]
+
+    E --> M[Salvar sessão]
+    M --> N[save_sessions · storage.py]
+    N --> O[~/.eduqr_sessions.json]
+
+    E --> P[Carregar sessão]
+    P --> Q[load_sessions · storage.py]
+    Q --> D
+```
+
 ---
 
 ## Estrutura do projeto
