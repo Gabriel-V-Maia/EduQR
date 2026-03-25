@@ -11,6 +11,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11+-blue">
   <img src="https://img.shields.io/badge/status-active-success">
+  <img src="https://img.shields.io/github/v/release/Gabriel-V-Maia/EduQR">
 </p>
 
 
