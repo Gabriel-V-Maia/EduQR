@@ -140,10 +140,10 @@ App (CTk)
 ---
 
 ## Build de release
-
 ```bash
 pip install pyinstaller
-pyinstaller eduqr.spec
+pyinstaller --name EduQR --windowed --onefile main.py
+# saída: dist/EduQR.exe
 ```
 
 Saída: `dist/EduQR.exe` (Windows, arquivo único, sem console).
