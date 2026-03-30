@@ -17,6 +17,8 @@
 
 
 Os bilhetes são salvos como um `.docx` paginado, pronto para imprimir e distribuir aos pais ou alunos.
+O formato do arquivo pode não ser compatível com versões antigas do Word, apenas abra no google docs se tiver algum problema.
+Estou trabalhando em deixar compatível com todas as versões, ou pelo menos, a maioria delas.
 
 ## Requisitos
 
