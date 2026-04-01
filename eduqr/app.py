@@ -402,6 +402,7 @@ class App(ctk.CTk):
         self._sessions = load_sessions()
         self._class_cards: list[ClassCard] = []
         self._generating = False
+        self._refresh_job = None
 
         self._build()
 
@@ -411,8 +412,7 @@ class App(ctk.CTk):
         self._build_footer()
 
     def _build_header(self):
-        header = ctk.CTkFrame(self, fg_color=CARD, corner_radius=0,
-                               border_width=0)
+        header = ctk.CTkFrame(self, fg_color=CARD, corner_radius=0, border_width=0)
         header.pack(fill="x")
         ctk.CTkFrame(header, height=3, fg_color=GREEN, corner_radius=0).pack(fill="x")
 
@@ -502,7 +502,7 @@ class App(ctk.CTk):
             fg_color=CARD, border_color=BORDER,
             text_color=TEXT_DARK, placeholder_text="ex: AI",
         ).pack(side="left")
-        self._suffix_var.trace_add("write", lambda *_: self._refresh())
+        self._suffix_var.trace_add("write", lambda *_: self._schedule_refresh())
 
         text_frame = ctk.CTkFrame(left, fg_color=CARD, corner_radius=8,
                                    border_width=1, border_color=BORDER)
@@ -524,7 +524,7 @@ class App(ctk.CTk):
             "102\nhttps://chat.whatsapp.com/...\n"
             "201\nhttps://chat.whatsapp.com/..."
         )
-        self._text_input.bind("<KeyRelease>", lambda _: self._refresh())
+        self._text_input.bind("<KeyRelease>", lambda _: self._schedule_refresh())
 
     def _build_right_panel(self, parent):
         right = ctk.CTkFrame(parent, fg_color="transparent")
@@ -590,8 +590,7 @@ class App(ctk.CTk):
         self._refresh()
 
     def _build_footer(self):
-        footer = ctk.CTkFrame(self, fg_color=CARD, corner_radius=0,
-                               border_width=0)
+        footer = ctk.CTkFrame(self, fg_color=CARD, corner_radius=0, border_width=0)
         footer.pack(fill="x", pady=(12, 0))
         ctk.CTkFrame(footer, height=1, fg_color=BORDER, corner_radius=0).pack(fill="x")
 
@@ -677,10 +676,31 @@ class App(ctk.CTk):
         )
         self._gen_btn.pack(side="left")
 
+    def _schedule_refresh(self):
+        if self._refresh_job is not None:
+            self.after_cancel(self._refresh_job)
+        self._refresh_job = self.after(300, self._refresh)
+
     def _refresh(self):
+        self._refresh_job = None
         raw = self._text_input.get("1.0", "end-1c").strip()
         suffix = self._suffix_var.get()
-        self._classes = parse_classes(raw, suffix)
+        new_classes = parse_classes(raw, suffix)
+
+        current_names = [e.display_name for e in self._classes]
+        new_names = [e.display_name for e in new_classes]
+
+        if current_names == new_names:
+            for old, new in zip(self._classes, new_classes):
+                old.link = new.link
+            self._update_summary()
+            return
+
+        saved_quantities = {e.display_name: e.quantity for e in self._classes}
+        self._classes = new_classes
+        for e in self._classes:
+            if e.display_name in saved_quantities:
+                e.quantity = saved_quantities[e.display_name]
 
         for w in self._cards_frame.winfo_children():
             w.destroy()
